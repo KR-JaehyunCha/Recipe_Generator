@@ -33,8 +33,4 @@ yarn-error.log*
 .DS_Store
 
 # Windows 특정 파일
-<<<<<<< HEAD
 desktop.ini
-=======
-desktop.ini
->>>>>>> main
