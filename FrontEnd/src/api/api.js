@@ -1,9 +1,9 @@
+// src/api/api.js (React 예시)
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000'; // Flask 서버 주소
+const API_URL = 'http://localhost:8000';
 
-export async function getTestData() {
-  // Flask 서버의 /api/test 엔드포인트 호출
-  const response = await axios.get(`${BASE_URL}/api/test`);
-  return response.data; // { message: "Hello from Flask API!" }
+export async function echoMessage(text) {
+  const response = await axios.post(`${API_URL}/api/echo`, { text });
+  return response.data; // { received: "입력 텍스트" }
 }
