@@ -6,6 +6,9 @@ import DarkModeToggle from './components/DarkModeToggle';
 import SideBar from './components/SideBar';
 import './styles/App.css'; // 전역 스타일 (선택)
 
+// axios 설치: npm install axios
+import axios from 'axios';
+
 function App() {
   // 메시지 상태
   const [messages, setMessages] = useState([]);
@@ -13,12 +16,34 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   // 메시지 전송 함수
-  const handleSend = (text) => {
-    const newMessage = { sender: 'user', text };
-    setMessages([...messages, newMessage]);
+  const handleSend = async (text) => {
+    // 사용자 메시지 추가
+    const userMessage = { sender: 'user', text };
+    setMessages((prev) => [...prev, userMessage]);
 
-    // 임시 봇 응답
-    setMessages((prev) => [...prev, { sender: 'bot', text: '안녕하세요!' }]);
+    try {
+      // Flask 서버에 POST 요청 (예: http://localhost:5000/api/echo)
+      const response = await axios.post('http://localhost:5000/api/echo', {
+        text: text,
+      });
+
+      // 서버 응답에서 봇 메시지 추출
+      // 백엔드 echo 예시: { "received": { "text": "..."} }
+      const botReply = response.data.received.text;
+
+      // 봇 메시지 추가
+      const botMessage = { sender: 'bot', text: botReply };
+      setMessages((prev) => [...prev, botMessage]);
+
+    } catch (error) {
+      console.error('API 호출 에러:', error);
+
+      // 오류 발생 시 임시 메시지
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'bot', text: '서버와 통신 중 오류가 발생했습니다.' },
+      ]);
+    }
   };
 
   const toggleDarkMode = () => {
@@ -37,7 +62,6 @@ function App() {
 
       {/* 오른쪽 메인 컨테이너 (채팅창 + 입력영역) */}
       <div className="main-container">
-        {/* 다크 모드 토글을 상단에 두고 싶다면 여기 배치해도 됨 */}
         <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
         {/* 채팅창 */}
