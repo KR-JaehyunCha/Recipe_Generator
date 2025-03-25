@@ -22,14 +22,17 @@ function App() {
     setMessages((prev) => [...prev, userMessage]);
 
     try {
-      // Flask 서버에 POST 요청 (예: http://localhost:5000/api/echo)
-      const response = await axios.post('http://localhost:5000/api/echo', {
+      // FastAPI 서버에 POST 요청 (예: http://localhost:8000/api/echo)
+      // FastAPI에서 return {"received": data.text} 라고 하면,
+      // response.data.received 값이 실제 봇 응답이 됩니다.
+      const response = await axios.post('http://localhost:8000/api/echo', {
         text: text,
       });
 
       // 서버 응답에서 봇 메시지 추출
-      // 백엔드 echo 예시: { "received": { "text": "..."} }
-      const botReply = response.data.received.text;
+      // 예: { "received": "사용자 입력" }
+      const botReply = response.data.received; 
+      // FastAPI 코드에 따라 구조가 다를 수 있으니 확인하세요.
 
       // 봇 메시지 추가
       const botMessage = { sender: 'bot', text: botReply };
