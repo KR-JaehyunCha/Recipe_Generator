@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ChatWindow from './components/ChatWindow';
 import InputForm from './components/InputForm';
 import DarkModeToggle from './components/DarkModeToggle';
+import SideBar from './components/SideBar';
 import './styles/App.css'; // 전역 스타일 (선택)
 
 function App() {
@@ -16,9 +17,8 @@ function App() {
     const newMessage = { sender: 'user', text };
     setMessages([...messages, newMessage]);
 
-    // TODO: 여기에 백엔드 API 호출, 봇 응답 추가 등
-    // 임시 예시:
-    setMessages((prev) => [...prev, { sender: 'bot', text: '안녕하세요!'}]);
+    // 임시 봇 응답
+    setMessages((prev) => [...prev, { sender: 'bot', text: '안녕하세요!' }]);
   };
 
   const toggleDarkMode = () => {
@@ -32,21 +32,26 @@ function App() {
 
   return (
     <div className="app">
-      {/* 다크 모드 토글 */}
-      <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      {/* 왼쪽 사이드바 */}
+      <SideBar />
 
-      {/* 채팅창 */}
-      <div className="chat-window">
-        <ChatWindow messages={messages} />
-      </div>
+      {/* 오른쪽 메인 컨테이너 (채팅창 + 입력영역) */}
+      <div className="main-container">
+        {/* 다크 모드 토글을 상단에 두고 싶다면 여기 배치해도 됨 */}
+        <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      {/* 입력창 */}
-      <div className="input-area">
-        <InputForm onSend={handleSend} />
+        {/* 채팅창 */}
+        <div className="chat-window">
+          <ChatWindow messages={messages} />
+        </div>
+
+        {/* 입력창 */}
+        <div className="input-area">
+          <InputForm onSend={handleSend} />
+        </div>
       </div>
     </div>
   );
 }
 
 export default App;
-
