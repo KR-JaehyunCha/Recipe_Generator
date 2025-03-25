@@ -25,9 +25,9 @@ const InputForm = ({ onSend }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyPress={handleKeyPress}
-        placeholder="메시지를 입력하세요..."
+        placeholder="Ask anything!"
       />
-      <button onClick={handleSend}>전송</button>
+      <button onClick={handleSend}>Send</button>
     </div>
   );
 };
