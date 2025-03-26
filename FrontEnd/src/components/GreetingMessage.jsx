@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 
 const GreetingMessage = () => {
+  const [showIcon, setShowIcon] = useState(false);
+
   return (
     <div
     style={{
-      textAlign: 'center',  // 텍스트 수평 중앙 정렬
-      fontSize: '3rem',     // 글자 크기 (원하는 만큼 조정)
-      marginTop: '3rem'     // 화면 위쪽에 여백
+      textAlign: 'center',
+      fontSize: '3rem',
+      marginTop: '9rem'
     }}
     > 
       <ReactTyped
@@ -15,7 +17,9 @@ const GreetingMessage = () => {
         typeSpeed={40}
         backSpeed={0}
         showCursor={false}
+        onComplete={() => setShowIcon(true)} // ✅ 텍스트 끝난 후에 아이콘 보이게
       />
+      {showIcon && <i className="fa-solid fa-utensils" style={{ marginLeft: '10px'}}/>}
     </div>
   );
 };
