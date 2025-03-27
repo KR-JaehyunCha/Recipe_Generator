@@ -1,58 +1,100 @@
-/* src/styles/Sidebar.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 
 .sidebar {
-    width: 250px;           /* 원하는 고정 너비 */
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-
-    background-color: var(--sidebar-bg);
-  }
-  
-  /* 사이드바 내부 스타일 */
-  .sidebar h2 {
-    margin-top: 0;
-  }
-  
-  .new-chat-button {
-    margin: 0.5rem 0;
-    padding: 0.75rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
-  }   
-  
-  .chat-history-title {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 5px; /* 줄과의 간격 */
-    border-bottom: 2px solid #333; /* 줄 스타일 */
-    width: 80%; /* 줄 길이 조정 */
-    margin: 0 auto; /* 가운데 정렬 */
+  width: 250px;
+  height: 100vh;                            /* 전체 높이 */
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid #ddd;
 }
 
-.chat-history-all{
-  padding-bottom: 570px;
+/* 위쪽 전체 영역 (New Chat + 히스토리) */
+.sidebar-top {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                         /* 내부 스크롤을 위해 */
 }
 
-.clear-conversation{
+/* New Chat 버튼 */
+.new-chat-button {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+}
+
+/* Chat History 제목 */
+.chat-history-title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 3px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* 세션 버튼 전체 스크롤 영역 */
+.chat-history-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 0.5 rem;
+}
+
+/* 히스토리 버튼 */
+.chat-history-list button {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-history-list button:hover {
+  background-color: #e0e0e0;
+}
+
+/* 하단 고정 버튼 영역 */
+.sidebar-bottom-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
   margin-bottom: 10px;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
 }
 
-.darkmode-on-off{
-  margin-bottom: 10px;
+/* 공통 버튼 스타일 */
+.clear-conversation,
+.darkmode-on-off,
+.updates-FAQ {
+  padding: 0.5rem;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  transition: background-color 0.2s;
 }
 
-.updates-FAQ{
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
+.clear-conversation:hover,
+.darkmode-on-off:hover,
+.updates-FAQ:hover {
+  background-color: #e0e0e0;
 }
