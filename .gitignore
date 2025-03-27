@@ -41,3 +41,6 @@ venv/
 # __pycache__ 폴더와 .pyc 파일
 __pycache__/
 *.py[cod]
+
+# .gitignore 예시
+chat_history.json
