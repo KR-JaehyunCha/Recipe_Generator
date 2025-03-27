@@ -1,11 +1,14 @@
 /* src/styles/Sidebar.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
 .sidebar {
     width: 250px;           /* 원하는 고정 너비 */
-    background-color: #f1f1f1;
     border-right: 1px solid #ddd;
     display: flex;
     flex-direction: column;
     padding: 1rem;
+
+    background-color: var(--sidebar-bg);
   }
   
   /* 사이드바 내부 스타일 */
@@ -13,14 +16,43 @@
     margin-top: 0;
   }
   
-  .new-chat-button,
-  .chat-history-button {
+  .new-chat-button {
     margin: 0.5rem 0;
     padding: 0.75rem;
-    border: none;
-    background-color: #4caf50;
-    color: #fff;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
   }   
   
+  .chat-history-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 5px; /* 줄과의 간격 */
+    border-bottom: 2px solid #333; /* 줄 스타일 */
+    width: 80%; /* 줄 길이 조정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.chat-history-all{
+  padding-bottom: 570px;
+}
+
+.clear-conversation{
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.darkmode-on-off{
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.updates-FAQ{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}

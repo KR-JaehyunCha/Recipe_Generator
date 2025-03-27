@@ -24,13 +24,13 @@
 }
 
 .chat-bubble.user {
-  background-color: #dcf8c6;
+  background-color: var(--chat-window-bg);
   align-self: flex-end;  /* 오른쪽 정렬 */
   margin-left: auto;
 }
 
 .chat-bubble.bot {
-  background-color: #ffffff;
+  background-color: var(--chat-window-bg);
   align-self: flex-start; /* 왼쪽 정렬 */
   margin-right: auto;
 }
