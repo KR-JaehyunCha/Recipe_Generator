@@ -1,8 +1,10 @@
+/* Side Bar Design */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700&display=swap');
 
 .sidebar {
   width: 250px;
-  height: 100vh;                            /* 전체 높이 */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding-left: 1rem;

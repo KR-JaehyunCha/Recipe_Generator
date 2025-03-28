@@ -7,15 +7,13 @@ const Sidebar = ({ onNewChat, onLoadSession, reloadSessions }) => {
 
   const fetchSessions = async () => {
     const res = await axios.get("http://localhost:8000/api/chat-sessions");
-    setSessionList(res.data); // [{ session_id, title }]
+    setSessionList(res.data);
   };
 
-  // 처음 1번 불러오기
   useEffect(() => {
     fetchSessions();
   }, []);
 
-  // New Chat 이후 세션 갱신
   useEffect(() => {
     if (reloadSessions) {
       fetchSessions();
@@ -33,9 +31,21 @@ const Sidebar = ({ onNewChat, onLoadSession, reloadSessions }) => {
     onLoadSession(res.data);
   };
 
+  const handleClearAllSessions = async () => {
+    const confirm = window.confirm("정말 모든 대화를 삭제하시겠습니까?");
+    if (!confirm) return;
+
+    try {
+      await axios.delete("http://localhost:8000/api/chat-sessions");
+      fetchSessions();   // 사이드바 목록 갱신
+      onNewChat();       // 메인 채팅창 초기화
+    } catch (error) {
+      console.error("대화 삭제 실패:", error);
+    }
+  };
+  
   return (
     <div className="sidebar">
-      {/* 전체 사이드바를 위/아래로 나누기 */}
       <div className="sidebar-top">
         <button className="new-chat-button" onClick={onNewChat}>+ New Chat</button>
 
@@ -49,9 +59,9 @@ const Sidebar = ({ onNewChat, onLoadSession, reloadSessions }) => {
         </div>
       </div>
 
-      {/* 아래 고정 버튼 영역 */}
       <div className="sidebar-bottom-buttons">
-        <button className="clear-conversation">
+        
+        <button className="clear-conversation" onClick={handleClearAllSessions}>
           Clear Conversation
           <i className="fa-regular fa-trash-can" style={{ marginLeft: "8px" }}></i>
         </button>

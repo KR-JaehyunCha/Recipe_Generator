@@ -47,7 +47,7 @@ function App() {
 
     setMessages([]);
     setShowGreeting(true);
-    setReloadSessions(true); // 사이드바가 이걸 감지해서 목록 다시 불러옴
+    setReloadSessions(true);
   };
 
   const handleLoadSession = (loadedMessages) => {

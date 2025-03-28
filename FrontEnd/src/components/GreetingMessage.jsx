@@ -17,7 +17,7 @@ const GreetingMessage = () => {
         typeSpeed={40}
         backSpeed={0}
         showCursor={false}
-        onComplete={() => setShowIcon(true)} // ✅ 텍스트 끝난 후에 아이콘 보이게
+        onComplete={() => setShowIcon(true)}
       />
       {showIcon && <i className="fa-solid fa-utensils" style={{ marginLeft: '10px'}}/>}
     </div>

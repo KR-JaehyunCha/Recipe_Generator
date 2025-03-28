@@ -5,25 +5,21 @@ from typing import List
 
 import json, os
 
-# CORS 설정을 위한 추가 import
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 CHAT_HISTORY_FILE = "chat_history.json"
 
-# CORS 설정
-# React (http://localhost:3000)에서 오는 요청 허용
 origins = [
-    "http://localhost:3000",
-    # 필요한 도메인/포트가 있다면 추가
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],     # GET, POST, PUT, DELETE 등
-    allow_headers=["*"],     # 모든 헤더 허용
+    allow_methods=["*"],     # GET, POST, PUT, DELETE
+    allow_headers=["*"],
 )
 
 class Message(BaseModel):
@@ -82,10 +78,16 @@ def read_root():
 def test_endpoint():
     return {"message": "FastAPI is connected!"}
 
+# Will be deleted
 @app.post("/api/echo")
 def echo_endpoint(data: EchoRequest):
-    # 클라이언트에서 받은 text를 그대로 돌려줌
     return {"received": data.text}
+
+@app.delete("/api/chat-sessions")
+def delete_all_sessions():
+    with open("chat_history.json", "w") as f:
+        json.dump([], f)
+    return {"status": "all sessions cleared"}
 
 # 요청 모델 정의 (입력값 받기)
 class RecommendRequest(BaseModel):
@@ -97,7 +99,7 @@ def recommend_recipe(data: RecommendRequest):
 
     dummy_recommendations = ["김치볶음밥", "계란말이", "된장찌개"]
 
-    # 여기에서 모델 연동 가능!
+    # 여기에서 모델 연동
     return {
         "input": user_input,
         "recipes": dummy_recommendations

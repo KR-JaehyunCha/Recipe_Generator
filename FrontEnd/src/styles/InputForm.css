@@ -1,9 +1,10 @@
+/* Chat Input Design */
+
 .input-form {
     display: flex;
     align-items: center;
     padding: 0.5rem;
     background-color: var(--input-background);
-    border-top: 1px solid #ddd;
   }
   
   .input-form input {

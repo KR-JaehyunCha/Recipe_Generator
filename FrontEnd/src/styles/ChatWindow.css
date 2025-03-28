@@ -1,17 +1,15 @@
-/* src/styles/ChatWindow.css */
+/* Chat Window Design */
 
 .chat-window {
-  /* Flex 레이아웃으로 수직 정렬 가능 */
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   padding: 1rem;
 
-  /* 라이트/다크 모드에 맞춰 색상 변경을 위해 CSS 변수 사용 */
+  /* 다크 모드에 맞춰 색상 변경을 위해 CSS 변수 사용 */
   background-color: var(--chat-window-bg);
 
-  /* 원하는 경우 모서리 둥글게 */
   border-radius: 8px;
 }
 
