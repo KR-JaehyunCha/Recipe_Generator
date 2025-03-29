@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 
+
 import json, os
 
 # CORS 설정을 위한 추가 import
